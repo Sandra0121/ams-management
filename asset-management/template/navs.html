@@ -1,0 +1,274 @@
+
+{% load static %}
+
+    <!-- Mobile Menu start -->
+    <div class="mobile-menu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mobile-menu">
+                        <nav id="dropdown">
+                            <ul class="mobile-menu-nav">
+                                <li><a data-toggle="collapse" data-target="#Charts" href="/#">Dashboard</a>
+                                    <ul class="collapse dropdown-header-top">
+                                            <li><a href="//home">Home</a>
+                                            </li>
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="collapse" data-target="#demoevent" href="/#"> Manage Asset</a>
+                                    <ul id="demoevent" class="collapse dropdown-header-top">
+                                            <li><a href="/addasset">Add Item</a>
+                                            </li>
+                                            <li><a href="/addcategory">Add Category</a>
+                                            </li>
+                                            <li><a href="/addlocation">Add Location</a>
+                                            </li>
+                                            <li><a href="/consumable">Consumable List</a>
+                                            </li>
+                                            <li><a href="/noconsumable">Non-Consumable List</a>
+                                            </li>
+                                            <li><a href="/tracking">Track Assets</a>
+                                            </li>
+                                    </ul>       
+                                </li>
+
+                                {% if request.user.is_superuser %}
+                                <li><a data-toggle="collapse" data-target="#democrou" href="/#">Manage Users</a>
+                                    <ul id="democrou" class="collapse dropdown-header-top">
+                                            <li><a href="/adduser">Add User</a>
+                                            </li>
+                                            <li><a href="/ulist">User User List</a>
+                                            </li>
+                                            <!-- <li><a href="/setpermision">Set Permision</a>
+                                            </li>
+                                            <li><a href="/listgroup">Groups</a> -->
+                                            </li>
+                                    </ul>
+                                </li>
+                                {% endif %}
+                                <li><a data-toggle="collapse" data-target="#demolibra" href="/#">Users & Asset</a>
+                                    <ul id="demolibra" class="collapse dropdown-header-top">
+                                            <li><a href="/assignlist">Assigned Users</a>
+                                            </li>
+                                            {% if request.user.is_superuser %}
+                                            <li><a href="/assign">Assign Assets</a>
+                                            </li>
+                                            <li><a href="/requestaset">Asset Request</a>
+                                            </li>
+                                            <li><a href="/borrowasset">Borrow Asset</a>
+                                            </li>
+                                            <li><a href="/borrowlist">Borrowed List</a>
+                                            </li>
+                                            <li><a href="/vlist">Voucher List</a>
+                                            </li>
+                                            {% endif %}
+                                    
+                                    </ul>
+                                </li>
+
+                                <li><a data-toggle="collapse" data-target="#demoevent" href="/#"> Access Control</a>
+                                    <ul id="demoevent" class="collapse dropdown-header-top">
+                                        <li><a href="/list">Assigned Users</a>
+                                        </li>
+                                        <li><a href="/attempts">Attempts</a>
+                                        </li>
+                                
+                                    </ul>
+                                </li>
+
+
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout"><i class="notika-icon notika-next"></i> Logout</a></li>
+                                <!-- <li><a data-toggle="collapse" data-target="#demolibra" href="/#">Reports</a>
+                                    <ul id="demolibra" class="collapse dropdown-header-top">
+                                            <li><a href="/assignlist">Assigned Users</a>
+                                            </li>
+                                            {% if request.user.is_superuser %}
+                                            <li><a href="/assign">Assign Assets</a>
+                                            </li>
+                                            <li><a href="/requestaset">Asset Request</a>
+                                            </li>
+                                            <li><a href="/borrowasset">Borrow Asset</a>
+                                            </li>
+                                            <li><a href="/borrowlist">Borrowed List</a>
+                                            </li>
+                                            <li><a href="/vlist">Voucher List</a>
+                                            </li>
+                                            {% endif %}
+                                    </ul>
+                                </li> -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu end -->
+
+
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                        <li class="{% if navbar == 'Home' %}active{% endif %}"><a data-toggle="tab" href="#Home"><i class="fa fa-tachometer"></i> Dashboard</a>
+                        </li>
+                        <li class="{% if navbar == 'manageasset' %}active{% endif %}"><a data-toggle="tab" href="#mailbox"><i class="glyphicon glyphicon-th"></i> Manage Asset</a>
+                        </li>
+                        {% if request.user.is_superuser %}
+                        <li class="{% if navbar == 'mnguser' %}active{% endif %}"><a data-toggle="tab" href="#Charts"><i class="glyphicon glyphicon-user"></i> Manage Users</a>
+                        </li>
+                        {% endif %}
+                        <li class="{% if navbar == 'userasset' %}active{% endif %}"><a data-toggle="tab" href="#Assets"><i class="glyphicon glyphicon-th-list"></i> Users & Asset</a>
+                        </li>
+                        <li hidden class="{% if navbar == 'reports' %}active{% endif %}"><a data-toggle="tab" href="#Interface"><i class="fa fa-gears"></i> Reports</a>
+                        </li>
+                        <li class="{% if navbar == 'access' %}active{% endif %}"><a data-toggle="tab"
+                                href="#Access"><i class="glyphicon glyphicon-user"></i> Access Control</a>
+                        </li>
+
+                        
+
+                        <li hidden class="nav-item" style="float:right">
+                            <a href="/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                <span>
+                                    <i class="fa fa-user"> {{usenam}}</i>
+                                </span>
+                            </a>
+                            <div role="menu" class="dropdown-menu message-dd task-dd animated rotateIn">
+                                <div class="hd-mg-tt">
+                                    <center><h4>Profile</h4></center>
+                                </div>
+                                <div class="hd-message-info hd-task-info">
+                                    <div class="dropdown-trig-sing sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                        <ul class="dropdown-menu " role="menu">
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="notika-icon notika-house"></i>{{request.user.username}}</a></li>
+                                            <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="/change_pwd"><i class="fa  fa-cog"></i> Account settings</a>
+                                            </li> -->
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout"><i class="notika-icon notika-next"></i> Logout</a></li>
+                                            <li class="divider"></li>
+                                            <li role="presentation" hidden><a role="menuitem" tabindex="-1" href="/#"><i class="notika-icon notika-map"></i> Login</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>  
+
+                    </ul>
+                    <div class="tab-content custom-menu-content">
+                        <div id="Home" class="tab-pane in {% if navbar == 'Home' %}active{% endif %} notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="/home">Home</a>
+                                </li>
+                                <li><a href="/view_items_by_location">View By Location</a>
+                                </li>
+                                <li><a href="/lost_list_items">Lost Items</a>
+                                </li>
+                                <li><a href="/deleted_list">Deleted Items</a>
+                                </li>
+                                <li><a href="/edited_list">Edited Items</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="mailbox" class="tab-pane {% if navbar == 'manageasset' %}active{% endif %} notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="/addasset">Add Item</a>
+                                </li>
+                                <li><a href="/addcategory">Add Category</a>
+                                </li>
+                                <li><a href="/category_view">View Categories</a>
+                                </li>
+                                <li><a href="/addlocation">Add Location</a>
+                                </li>
+                                <li><a href="/view_location">View Locations</a>
+                                </li>
+                                <li><a href="/consumable">Consumable List</a>
+                                </li>
+                                <li><a href="/noconsumable">Non-Consumable List</a>
+                                </li>
+                                <li><a href="/tracking">Track Assets</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div hidden id="Interface" class="tab-pane {% if navbar == 'reports' %}active{% endif %}  notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <!-- <li><a href="/animations.html">General Report</a>
+                                </li> -->
+                                <li><a href="/security_report">Security Report</a>
+                                </li>
+                                <!-- <li><a href="/google-map.html">Edited Items</a>
+                                </li>
+                                <li><a href="/data-map.html">Deleted Items</a>
+                                </li>
+                                <li><a href="/code-editor.html">Reoder Level</a>
+                                </li>
+                                {% if request.user.is_superuser %}
+                                <li><a href="/code-editor.html">Activity Logs</a>
+                                </li>
+                                {% endif %} -->
+                            </ul>
+                        </div>
+                        {% if request.user.is_superuser %}
+                        <div id="Charts" class="tab-pane {% if navbar == 'mnguser' %}active{% endif %} notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                
+                                <li><a href="/adduser">Add User</a>
+                                </li>
+                                <li><a href="/ulist">User List</a>
+                                </li>
+                                <!-- <li><a href="/setpermision">Set Permision</a>
+                                </li>
+                                <li><a href="/listgroup">Groups</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        {% endif %}
+
+
+
+                        <div id="Assets" class="tab-pane {% if navbar == 'userasset' %}active{% endif %} notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="/assignlist">Assigned Users</a>
+                                </li>
+                                {% if request.user.is_superuser %}
+                                <li><a href="/assign">Assign Assets</a>
+                                </li>
+                                <li><a href="/view_new_requ">Asset Request</a>
+                                </li>
+                                <li><a href="/borrowasset">Lend Asset</a>
+                                </li>
+                                <li><a href="/borrowlist">Lend List</a>
+                                </li>
+                                <li><a href="/vlist">Voucher List</a>
+                                </li>
+                                {% endif %}
+                                
+                            </ul>
+                        </div>
+
+
+
+                        <div id="Access" class="tab-pane {% if navbar == 'access' %}active{% endif %} notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="/add_doors">Add Doors</a>
+                                </li>
+                                <li><a href="/add_autho">Add Authorization</a>
+                                </li>
+                                <li><a href="/doors">View Doors</a>
+                                </li>
+                                <li><a href="/autholist">View Authorizations</a>
+                                </li>
+                                <li><a href="/attempts">Attempts</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Menu area End-->

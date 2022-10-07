@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+   
+
+
+
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-support"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Security Check Report</h2>
+										<p>Generate Report  then <strong> CLICK the button to Download</strong></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-3">
+								<div class="breadcomb-report">
+									<button type="button" name="Print" onclick="printDiv('print_part')"  title="Download Report" class="btn"><i class="notika-icon notika-print"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Breadcomb area End-->
+    
+    <!-- Main Menu area End-->
+
+
+
+    <!-- Invoice area Start-->
+    <div class="invoice-area" >
+        <div class="container">
+                {% include 'partials/_alerts.html' %}
+            <div class="row">
+                <div id="print_part"> 
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="invoice-wrap">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <div class="invoice-img" style="background:rgb(255, 255, 255)">
+                                    <img src="{% static 'images/arm.png' %}" style="width:50%;" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: center;">
+                                <h3 style="color:rgb(61, 163, 223);">e-GOVERNMENT AUTHORITY</h3>
+                                <h4 style="color:rgb(59, 167, 218);">Asset Management System</h4>
+                                <h6 style="color:rgb(59, 167, 218);">Security Report</h6>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <div class="invoice-img" style="background:rgb(252, 255, 255)">
+                                    <img src="{% static 'images/report.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+                        <div class="row" style="border:brown dotted;margin:10px;">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                        </div>
+
+                        <div class="row" style="border:rgb(165, 122, 42) dotted;margin:10px;">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                iouierewrerer
+                            </div>
+                        </div>
+
+
+
+
+                        </div>
+                        <h6>Security Guard In Charge</h6>
+                        <table>
+                            <tr>
+                                <td width="30%">Mwajuma Ali </td>
+                            <tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+        <!-- Invoice area End-->
+        <script type="text/javascript">
+            function printDiv(divName) {
+                var printContents = document.getElementById(divName).innerHTML;
+                var originalContents = document.body.innerHTML;
+        
+                document.body.innerHTML = printContents;
+        
+                window.print();
+        
+                document.body.innerHTML = originalContents;
+            }
+                </script>
+{% endblock %}

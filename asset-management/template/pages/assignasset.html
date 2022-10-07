@@ -1,0 +1,139 @@
+
+    {% extends 'layout.html' %}
+    {% block content%}
+    {% load static %}
+    {% include 'navs.html' %}
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            {% include 'partials/_alerts.html' %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Un-Assigned Assets</h2>
+                        </div>
+                    <div class="table-responsive">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Item Name</th>
+                                    <th>Item Id</th>
+                                    <th>Item Category</th>
+                                    <th>Location</th>
+                                    <th>Added date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+        <tbody>
+                {% for aset in assets%}
+                <tr>
+                    <td>{{aset.id}}</td>
+                    <td>{{aset.nocname}}</td>
+                    <td>{{aset.nocid}}</td>
+                    <td>{{aset.noccategory}}</td>
+                    <td>{{aset.noclocation}}</td>
+                    <td>{{aset.created_on}}</td>
+                <td>
+                    <button data-toggle="modal" data-target="#{{aset.id}}" class="btn btn-notika btn-xs btn-info"> <i class="glyphicon glyphicon-link"></i> Assign</button>
+                    <div class="modals-single">
+                    <div class="modals-default-cl">
+                        <div class="modal fade" id="{{aset.id}}" role="dialog">
+                            <div class="modal-dialog modal-large">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <h2>Assign Asset to User</h2>
+                                    {{user.request_user_id}}
+                                <form action="assign" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-element-list">
+                            <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-element-list mg-t-30">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="form-group ic-cmp-int">
+                                                    <div class="form-ic-cmp">
+                                                        <i class="glyphicon glyphicon-font"></i>
+                                                    </div>
+                                                    <div class="nk-int-st">
+                                                        <input  type="text" value="{{aset.nocname}}" name="coname" class="form-control" placeholder="Asset Name">
+                                                        <input hidden  type="text" value="{{aset.id}}" name="itemid" class="form-control" placeholder="Asset Name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> 
+                                        <div class="bootstrap-select fm-cmp-mg"> 
+                                            <select name="usernm" class="selectpicker" data-live-search="true" title="Assigned User">
+                                                <optgroup label="Select User">
+                                                {% for user in uselist %}
+                                                        <option value="{{user.request_user_id}}">{{user.request_user}}</option>
+                                                    {% endfor %}
+                                                ]</optgroup>
+                                                </select>
+                                        </div>
+                                        </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="bootstrap-select fm-cmp-mg">
+                                                        <select name="locat" class="selectpicker" title="User Location ">
+                                                                <optgroup label="Select Location ">
+                                                                    {% for loc in locatins%}
+                                                                        <option>{{loc.loname}}</option>
+                                                                    {% endfor %}>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" ><i class="glyphicon glyphicon-save"></i> Save changes</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+            
+                                        </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                    <th>ID</th>
+                                    <th>Item Name</th>
+                                    <th>Item Id</th>
+                                    <th>Item Category</th>
+                                    <th>Location</th>
+                                    <th>Added date</th>
+                                    <th>Action</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Data Table area End-->
+
+
+
+        
+{% endblock %}

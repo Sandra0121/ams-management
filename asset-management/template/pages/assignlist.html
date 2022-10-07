@@ -1,0 +1,67 @@
+
+    {% extends 'layout.html' %}
+    {% block content%}
+    {% load static %}
+    {% include 'navs.html' %}
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Assigned Assets</h2>
+                           </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Asset Owner</th>
+                                        <th>Item ID</th>
+                                        <th>Item name</th>
+                                        <th>Location</th>
+                                        <th>Added date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                    {% for aset in assets%}
+                                    <tr>
+                                        <td>{{aset.id}}</td>
+                                        <td>{{aset.username}}</td>
+                                        <td>{{aset.itemid}}</td>
+                                        <td>{{aset.item_name}}</td>
+                                        <td>{{aset.asgn_location}}</td>
+                                        <td>{{aset.assign_on}}</td>
+                                        <td>
+                                           <a href="/return_item/{{aset.itemid}}/"> <button  class="btn btn-notika btn-xs btn-info"> <i class="glyphicon glyphicon-edit"></i> Returned</button></a>
+                                            <a href="/lend_losted/{{aset.itemid}}/"><button  class="btn btn-notika btn-xs btn-danger"> <i class="glyphicon glyphicon-trash"></i> Report Lost</button></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                        <th>Asset Owner</th>
+                                        <th>Item ID</th>
+                                        <th>Item name</th>
+                                        <th>Location</th>
+                                        <th>Added date</th>
+                                        <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table area End-->
+
+
+
+            
+    {% endblock %}

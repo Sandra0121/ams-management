@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+
+<div class="container">
+    {% include 'partials/_alerts.html' %}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-element-list mg-t-30">
+                <div class="cmp-tb-hd">
+                    <h2>Fill user Details</h2>
+                    <p>Dont forget to put  <strong>valid email</strong> address  </p>
+                </div>
+                <form action="adduser" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int float-lb floating-lb">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input title="eg. Jackson Bakari" required pattern="^(\w\w+)\s(\w+)$" placeholder="Full Name" name="fullname" type="text" class="form-control">
+                                    <!-- <label class="nk-label">Full Name</label> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int float-lb floating-lb">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-mail"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input required name="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" placeholder="Email Address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int float-lb floating-lb">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-phone"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input placeholder="Contact Number" title="e.g +255123-245-789" required pattern="+[0-9]{6}[-][0-9]{3}[-][0-9]{3}" name="contacts" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int float-lb form-elet-mg">
+                                    <div class="form-ic-cmp">
+                                        <i style="cursor:pointer" title="Show Password" onclick="myFunction()" class="notika-icon notika-eye"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input id="pwd" placeholder="Password" required name="psww" type="password" class="form-control">
+                                       
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group ic-cmp-int float-lb floating-lb">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-star"></i>
+                                </div>
+                                <select required name="positions" class="selectpicker" title="POSITION">
+                                    <optgroup label="Position">
+                                            <option value="Staff">Staff</option>
+                                            <option value="Secretary">Secretary</option>
+                                            <option value="Security">Security</option>
+                                            <option value="Admin">Admin</option>
+                                    </optgroup>
+                                </select>                                
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int float-lb form-elet-mg">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <button type="reset" class="btn btn-primary"> <i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Add User</button>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function myFunction(){
+  var x = document.getElementById("pwd");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+</script>
+{% endblock %}

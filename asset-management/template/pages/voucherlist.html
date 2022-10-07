@@ -1,0 +1,68 @@
+
+    {% extends 'layout.html' %}
+    {% block content%}
+    {% load static %}
+    {% include 'navs.html' %}
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Un-Printed Vouchers</h2>
+                           </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Issurer Name</th>
+                                        <th>Borrower Name</th>
+                                        <th>Date Borrowed</th>
+                                        <th>Staff Id</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for voucher in vouchers %}
+                                    <tr>
+                                            <td>{{voucher.id}}</td>
+                                            <td>{{voucher.lender}}</td>
+                                            <td>{{voucher.recivername}}</td>
+                                            <td>{{voucher.lend_on}}</td>
+                                            <td>{{voucher.staffid}}</td>
+                                            <td>
+                                                <a href="/voucher/{{voucher.id}}">
+                                                    <button data-toggle="modal" data-target="#myModalthree" class="btn btn-notika btn-xs btn-info"> 
+                                                        <i class="fa fa-print"></i> Print Voucher
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Issurer Name</th>
+                                    <th>Borrower Name</th>
+                                    <th>Date Borrowed</th>
+                                    <th>Staff Id</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table area End-->
+
+
+
+            
+    {% endblock %}

@@ -1,0 +1,258 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+
+<!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="breadcomb-list">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="breadcomb-wp">
+                        <div class="breadcomb-icon">
+                            <i class="notika-icon notika-windows"></i>
+                        </div>
+                        <div class="breadcomb-ctn">
+                            <h5>Item Class</h5>
+                            <p>Select Class</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="nk-navigation nk-lg-ic rg-ic-stl">
+                            <button  onclick="hideUnhide('nonconsumable','consumable')" class="btn btn-primary btn-reco-mg btn-button-mg"> <i class="glyphicon glyphicon-ice-lolly-tasted"></i> Consumable</button>
+                        </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="nk-navigation nk-lg-ic rg-ic-stl">
+                            <button onclick="hideUnhide('consumable','nonconsumable')" class="btn btn-primary btn-reco-mg btn-button-mg"> <i class="glyphicon glyphicon-ice-lolly"></i> Non-Consumable</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- Breadcomb area End-->
+
+
+
+
+<div class="container">
+{% include 'partials/_alerts.html' %}
+<div class="row" id="consumable">
+<form action="addcunsumable" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-element-list">
+                <div class="cmp-tb-hd bcs-hd">
+                    <h2>Add Consumable List</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="form-group ic-cmp-int">
+                            <div class="form-ic-cmp">
+                                <i class="glyphicon glyphicon-font"></i>
+                            </div>
+                            <div class="nk-int-st">
+                                <input required type="text" name="coname" class="form-control" placeholder="Item Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="form-group ic-cmp-int">
+                            <div class="form-ic-cmp">
+                                <i class="glyphicon glyphicon-adjust"></i>
+                            </div>
+                            <div class="nk-int-st">
+                                <input required type="number" name="coqunty" class="form-control" placeholder="Item Quantity">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="form-group ic-cmp-int">
+                            <div class="form-ic-cmp">
+                                <i class="glyphicon glyphicon-dashboard"></i>
+                            </div>
+                            <div class="nk-int-st">
+                                <input required name="unitt" type="text" class="form-control" placeholder="Item Unit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-element-list mg-t-30">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="bootstrap-select fm-cmp-mg">
+                                            <select required name="colocation" class="selectpicker" title="Location">
+                                                {% for loct in loca_tion %}
+                                                    <option>{{loct.loname}}</option>
+                                                {% endfor %}
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="bootstrap-select fm-cmp-mg">
+                                            <select required name="cocategory" class="selectpicker" data-live-search="true" title="Category">
+                                                    {% for catg in category_cons %}
+                                                        <option>{{catg.coname}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="bootstrap-select fm-cmp-mg">
+                                            <select required name="costatus" class="selectpicker" title="Status ">
+                                                    <optgroup label="Status">
+                                                            <option value="Operational">Operational</option>
+                                                            <option value="Borrowed">Borrowed</option>
+                                                            <option value="Non-Operatianal">Non-Operatianal</option>
+                                                        </optgroup>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="form-group ic-cmp-int">
+                                            <div class="form-ic-cmp">
+                                                <i class="notika-icon notika-mail"></i>
+                                            </div>
+                                            <div class="nk-int-st">
+                                                <textarea required type="text" name="codescrp" class="form-control" placeholder="Descriptions"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-8"></div>
+                    <div class="col-sm-1">
+                        <button type="reset" class="btn btn-primary"> <i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                    </div>
+                    <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>  Save</button>
+                        </div>
+                </div>
+            </div>
+        </form>
+        </div>
+
+
+
+    <!-- Add non consu,able items here -->
+    <div class="row" id="nonconsumable" hidden>
+        <form action="addnoncunsumable" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    <div class="cmp-tb-hd bcs-hd">
+                        <h2>Add Non Consumable List</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="glyphicon glyphicon-font"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input required type="text" name="nocname" class="form-control" placeholder="Item Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="glyphicon glyphicon-adjust"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input required type="text" name="nocid" class="form-control" placeholder="Item ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="glyphicon glyphicon-adjust"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input required type="text" name="tag_id" class="form-control"
+                                        placeholder="Tag ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-mail"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <textarea type="text" name="nocdescp" class="form-control" placeholder="Descriptions"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-element-list mg-t-30">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="bootstrap-select fm-cmp-mg">
+                                                <select required name="noclocation" class="selectpicker" title="Location">
+                                                        {% for loct in loca_tion %}
+                                                            <option value="{{loct.id}}">{{loct.loname}}</option>        
+                                                        {% endfor %}
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="bootstrap-select fm-cmp-mg">
+                                                <select required name="noccategory" class="selectpicker" data-live-search="true" title="Category">
+                                                        {% for catg in category_non %}
+                                                            <option>{{catg.coname}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="bootstrap-select fm-cmp-mg">
+                                                <select required name="nocstatus" class="selectpicker" title="Status ">
+                                                        <optgroup label="Status">
+                                                                <option value="Operational">Operational</option>
+                                                                <option value="Borrowed">Borrowed</option>
+                                                                <option value="Non-Operatianal">Non-Operatianal</option>
+                                                                <option value="Lost">Lost</option>
+                                                                <option value="Maintanance">Maintanance</option>
+                                                        </optgroup>
+                                                    </select>
+                                            </div>
+                                        </div>                                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-8"></div>
+                        <div class="col-sm-1">
+                            <button type="reset" class="btn btn-primary"> <i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                        </div>
+                        <div class="col-sm-2">
+                                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>Save</button>
+                            </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+    </div>
+{% endblock %}

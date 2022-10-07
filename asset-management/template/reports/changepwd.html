@@ -1,0 +1,50 @@
+{% extends 'security/layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'security/navs.html' %}
+
+<div class="container">
+    <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <form class="form-outline" action="">
+                <!-- Register -->
+                <div class="nk-form">
+                    <div class="input-group mg-t-15">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-password"></i></span>
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control" placeholder="Old Password">
+                        </div>
+                    </div>
+        
+                    <div class="input-group mg-t-15">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon"></i></span>
+                        <div class="nk-int-st">
+                            <input type="password" class="form-control" placeholder="New Password">
+                        </div>
+                    </div>
+        
+                    <div class="input-group mg-t-15">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon"></i></span>
+                        <div class="nk-int-st">
+                            <input type="password" class="form-control" placeholder="Confirm New Password">
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
+                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login"
+                                class="btn btn-login btn-primary "><i class="notika-icon"></i>
+                            Change Password</a>
+                         </div>      
+                    </div><br>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

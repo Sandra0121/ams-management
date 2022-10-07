@@ -1,0 +1,50 @@
+{% extends 'security/layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'security/navs.html' %}
+
+<div class="container">
+    <div class="row">
+            {% include 'partials/_alerts.html' %}
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <form class="form-outline" action="/change_pwd" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <!-- Register -->
+                <div class="nk-form">
+                    <div class="input-group mg-t-15">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-password"></i></span>
+                        <div class="nk-int-st">
+                            <input name="old_pwd" type="password" class="form-control" placeholder="Old Password" required>
+                        </div>
+                    </div>
+        
+                    <div class="input-group mg-t-15">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon"></i></span>
+                        <div class="nk-int-st">
+                            <input name="new_pwd" type="password" class="form-control" placeholder="New Password" required>
+                        </div>
+                    </div>
+        
+                    <div class="input-group mg-t-15">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon"></i></span>
+                        <div class="nk-int-st">
+                            <input name="con_new_pwd" type="password" class="form-control" placeholder="Confirm New Password" required>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
+                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                             <button class="btn btn-login btn-primary " type="submit">Change Password</button>
+                         </div>      
+                    </div><br>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

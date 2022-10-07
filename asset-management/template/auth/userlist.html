@@ -1,0 +1,75 @@
+
+    {% extends 'layout.html' %}
+    {% block content%}
+    {% load static %}
+    {% include 'navs.html' %}
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+        {% include 'partials/_alerts.html' %}
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Available Users in the System</h2>
+                           </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Email</th>
+                                        <th>Active</th>
+                                        <th>Added date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    {% if user.is_superuser %}
+
+                                    {% else %}
+                                    <tr>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.first_name }}</td>
+                                        <td>{{ user.last_name }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.is_active }}</td>
+                                        <td>{{ user.date_joined }}</td>
+                                        <td>
+                                            <a href="/useredit/{{ user.id }}/"><button  class="btn btn-notika btn-xs btn-info"> <i class="glyphicon glyphicon-edit"></i> Edit</button></a>
+                                           {% if user.is_active %}
+                                            <a href="/block/{{ user.id }}/"> <button  class="btn btn-notika btn-xs btn-warning"> <i class="glyphicon glyphicon-ban-circle"></i> Block</button></a>
+                                            {% else %}
+                                            <a href="/activate/{{user.id }}/"> <button  class="btn btn-notika btn-xs btn-warning"> <i class="glyphicon glyphicon-ban-circle"></i> Active</button></a>
+                                            {% endif %}                                            
+                                            <a href="#"><button onclick="deleteRecord('{{ user.first_name }}'+' '+'{{ user.last_name }}','/userdelete/{{user.id}}/')" class="btn btn-notika btn-xs btn-danger"> <i class="glyphicon glyphicon-trash"></i> Delete</button></a>
+
+                                        </td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>User ID</th>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Email</th>
+                                        <th>Active</th>
+                                        <th>Added date</th>
+                                        <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table area End-->
+
+    {% endblock %}

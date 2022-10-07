@@ -1,0 +1,9 @@
+asgiref==3.4.1
+Django==3.2.15
+djangorestframework==3.13.1
+djangorestframework-jwt==1.11.0
+PyJWT==1.7.1
+pytz==2022.2.1
+qrcode==7.3.1
+sqlparse==0.4.2
+typing_extensions==4.1.1

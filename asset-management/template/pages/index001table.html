@@ -1,0 +1,46 @@
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Available Assets </h2>
+                    </div>
+                    <div class="table-responsive" id="tracking-id">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Asset Id</th>
+                                    <th>Asset Name</th>
+                                    <th>Asset Loc</th>
+                                    <th>Read At</th>
+                                </tr>
+                            </thead>
+                            <tbody id="available">
+                                {% for aset in asets %}
+                                <tr>
+                                    <td>{{ aset.id }}</td>
+                                    <td> {{ aset.asset_id__nocname}}</td>
+                                    <td> {{ aset.asset_id__nocid}}</td>
+                                    <td>{{ aset.reader_loc }}</td>
+                                    <td>{{ aset.read_at }}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Asset Id</th>
+                                    <th>Asset Loc</th>
+                                    <th>Read At</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

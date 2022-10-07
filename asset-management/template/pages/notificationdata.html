@@ -1,0 +1,52 @@
+<div class="data-table-area">
+    <div class="container">
+        {% include 'partials/_alerts.html' %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Asset Notifications</h2>
+                    </div>
+                    <div class="table-responsive" id="notificationtables-div">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Item Name</th>
+                                    <th>Item Code</th>
+                                    <th>Default Location</th>
+                                    <th>Current Loc</th>
+                                    <th>Read At</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for note in asets%}
+                                <tr>
+                                    <td>{{note.id}}</td>
+                                    <td>{{note.asset_id__nocname}}</td>
+                                    <td>{{note.asset_id__nocid}}</td>
+                                    <td>{{note.default_loc}}</td>
+                                    <td>{{note.current_loc}}</td>
+                                    <td>{{note.read_at}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Item Name</th>
+                                    <th>Item Code</th>
+                                    <th>Default Location</th>
+                                    <th>Current Location</th>
+                                    <th>Read At</th>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

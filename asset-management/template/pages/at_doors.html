@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+<!-- Data Table area Start-->
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2> Access Doors List</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Door ID</th>
+                                    <th>Door Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                {% for doors in autho %}
+                                <tr>
+                                    <td>{{doors.door_id}}</td>
+                                    <td>{{doors.door_name}}</td>
+
+                                    <td>
+
+                                        <a href="/del_door/{{doors.door_id}}"><button
+                                                class="btn btn-notika btn-xs btn-danger">
+                                                <i class="fa fa-trash"></i> Delete</button></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Door ID</th>
+                                    <th>Door Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Data Table area End-->
+
+
+
+
+{% endblock %}

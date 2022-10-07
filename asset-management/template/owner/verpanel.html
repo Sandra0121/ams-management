@@ -1,0 +1,162 @@
+{% extends 'owner/layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'owner/navs.html' %}
+
+
+
+     <!-- Start Status area -->
+     <div class="notika-status-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">50</span>%</h2>
+                            <p>PC</p>
+                        </div>
+                        <div class="sparkline-bar-stats1">9,4,8,6,5,6,4,8,3,5,9,5</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">90</span>%</h2>
+                            <p>Furniture</p>
+                        </div>
+                        <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">10</span>%</h2>
+                            <p>Network</p>
+                        </div>
+                        <div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div>
+                    </div>
+                </div>
+            </div><hr>
+        </div>
+    </div>
+    <!-- End Status area-->
+
+
+
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Available Assets </h2>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Item Name</th>
+                                        <th>Item Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for aset in assets %}
+                                    <tr>
+                                        <td>{{ aset.nocid }}</td>
+                                        <td>{{ aset.nocname}}</td>
+                                        <td>{{ aset.nocstatus}}</td>
+                                        <td>
+                                            <a href="/okk/{{aset.id}}"><button data-toggle="modal" data-target="#myModalthree" class="btn btn-notika btn-xs btn-info"> <i class="glyphicon glyphicon-thumbs-up"></i> OK</button></a>
+                                            <button data-toggle="modal" data-target="#{{aset.id}}" class="btn btn-notika btn-xs btn-danger"> <i class="glyphicon glyphicon-thumbs-down"></i> Not OK</button>
+                                            <div class="modals-single">
+                                                    <div class="modals-default-cl">
+                                                        <div class="modal fade" id="{{aset.id}}" role="dialog">
+                                                            <div class="modal-dialog modal-large">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h2>What is NOT OK</h2>
+                                                                <form id="{{ aset.nocid }}" action="notok" method="POST" enctype="multipart/form-data">
+                                                                {% csrf_token %}
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="form-element-list">
+                                                                        <div class="row">
+                                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div class="form-element-list mg-t-30">
+                                                                                        <div class="row">
+                                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                                    <div class="form-group ic-cmp-int">
+                                                                                                            <div class="form-ic-cmp">
+                                                                                                                <i class="glyphicon glyphicon-font"></i>
+                                                                                                            </div>
+                                                                                                            <div class="nk-int-st">
+                                                                                                                <input  type="text" value="{{aset.nocname}}" name="nocname" class="form-control" placeholder="Asset Name">
+                                                                                                               
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> 
+                                                                                                    <div class="form-group ic-cmp-int">
+                                                                                                            <div class="form-ic-cmp">
+                                                                                                                <i class="glyphicon glyphicon-qrcode"></i>
+                                                                                                            </div>
+                                                                                                            <div class="nk-int-st">
+                                                                                                                <input  type="text" value="{{ aset.nocid }}" name="nocid" class="form-control" placeholder="Asset ID">
+                                                                                                               
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                                <div class="bootstrap-select fm-cmp-mg">
+                                                                                                <textarea name="problems" id="" cols="30" rows="3" class="form-control" placeholder="What is wrong..!!" ></textarea>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button name="{{ aset.nocid }}" type="submit" class="btn btn-primary" ><i class="glyphicon glyphicon-send"></i> Report</button>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                    
+                                                                </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Item Name</th>
+                                    <th>Item Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table area End-->
+
+
+{% endblock %}

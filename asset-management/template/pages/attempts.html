@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+<!-- Data Table area Start-->
+<div id="datatables-div">
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2> List of attempts</h2>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Card ID</th>
+                                        <th>User Email</th>
+                                        <th>Room Name</th>
+                                        <th>Access Status</th>
+                                        <th>Door Description</th>
+                                        <th>Attempt On</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    {% for trials in autho %}
+                                    <tr>
+                                        <td>{{trials.card_id}}</td>
+                                        <td>{{trials.userFullName}}</td>
+                                        <td>{{trials.access_door_id_id__door_name}}</td>
+                                        <td>{{trials.access_status}}</td>
+                                        <td>{{trials.door_description}}</td>
+                                        <td>{{trials.attempt_on}}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Card ID</th>
+                                        <th>User Email</th>
+                                        <th>Room Name</th>
+                                        <th>Access Status</th>
+                                        <th>Door Description</th>
+                                        <th>Attempt On</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Data Table area End-->
+
+<script type="text/javascript">
+    /*$(document).ready(function() {
+        $('#data-table-basic').DataTable();
+    } );*/
+
+    var ajax_call = function () {
+        var $trials = $('#trials');
+        $.ajax({
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': '{{csrf_token}}'
+            },
+            url: 'attempts_async',
+            success: function (data) {
+                document.getElementById('datatables-div').innerHTML=data
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+
+
+
+    }
+    var interval = 5000; // 5 secs
+    setInterval(ajax_call, interval);
+</script>
+
+
+{% endblock %}

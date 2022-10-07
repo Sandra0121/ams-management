@@ -1,0 +1,209 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+    <!-- Start Status area -->
+    <div class="notika-status-area">
+        <div class="container">
+                {% include 'partials/_alerts.html' %}
+            <div class="row">
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12"> <a href="/view_items_by_location">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">{{status.Locations}}</span></h2>
+                            <p>Locations</p>
+                        </div>
+                        <div class="sparkline-bar-stats1">9,4,8,6,5,6,4,8,3,5,9,5</div>
+                    </div>
+                </div> </a>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12"> <a href="/category_view">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">{{status.Category}}</span></h2>
+                            <p>Category</p>
+                        </div>
+                        <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
+                    </div>  </a>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12"> <a href="/borrowlist">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">{{status.Lended}}</span></h2>
+                            <p>Lended </p>
+                        </div>
+                        <div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div>
+                    </div>
+                </div> </a>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12"> <a href="/ulist">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">{{status.Users}}</span></h2>
+                            <p>Users</p>
+                        </div>
+                        <div class="sparkline-bar-stats4">2,4,8,4,5,7,4,7,3,5,7,5</div>
+                    </div>
+                </div> </a>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12"> <a href="/noconsumable">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">{{status.Assets}}</span></h2>
+                            <p>Assets </p>
+                        </div>
+                        <div class="sparkline-bar-stats3">2,5,6,3,8,3,5,9,5</div>
+                    </div>
+                </div> </a>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12"> <a href="/view_new_requ">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span class="counter">{{status.Request}}</span></h2>
+                            <p>New Request</p>
+                        </div>
+                        <div class="sparkline-bar-stats4">2,4,8,4,5,7,4,7</div>
+                    </div>
+                </div> </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Status area-->
+
+
+
+    <!-- Start Sale Statistic area-->
+    <div class="sale-statistic-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                    <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                    <div class="email-ctn-round">
+                        <div class="email-rdn-hd">
+                            <h2>General Informations</h2>
+                        </div>
+
+                        <div class="recent-items-inn">
+                            <table class="table table-inner table-vmiddle">
+                                <thead>
+                                    <tr>
+                                        <th>Infos About</th>
+                                        <th style="width: 60px">Size</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Deleted Items</td>
+                                        <td class="f-500 c-cyan">{{status.deleted_assets}}</td>
+                                        <td class="f-500 c-cyan">{{status.per_deleted}} %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edited Items</td>
+                                        <td class="f-500 c-cyan">{{status.edited_details}}</td>
+                                        <td class="f-500 c-cyan">{{status.per_edited}} %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Consumable</td>
+                                        <td class="f-500 c-cyan">{{status.t_consu}}</td>
+                                        <td class="f-500 c-cyan">{{status.per_consu}} %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Non-Consumable</td>
+                                        <td class="f-500 c-cyan">{{status.t_nonconsu}}</td>
+                                        <td class="f-500 c-cyan">{{status.per_nonconsu}} %</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                    <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                        <div class="email-ctn-round">
+                            <div class="email-rdn-hd">
+								<h2>Lost Statistics</h2>
+							</div>
+                            <div class="email-statis-wrap">
+                                <div class="email-round-nock">
+                                    <input type="text" class="knob" value="0" data-rel="{{status.Per_Lost}}" data-linecap="round" data-width="130" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true">
+                                </div>
+                                <div class="email-ctn-nock">
+                                    <p>Total Lost</p>
+                                </div>
+                            </div>
+                            <div class="email-round-gp">
+                                <div class="email-round-pro">
+                                    <div class="email-signle-gp">
+                                        <input type="text" class="knob" value="0" data-rel="75" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
+                                    </div>
+                                    <div class="email-ctn-nock">
+                                        <p>Un-Known Loss</p>
+                                    </div>
+                                </div>
+                                <div class="email-round-pro">
+                                    <div class="email-signle-gp">
+                                        <input type="text" class="knob" value="0" data-rel="35" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
+                                    </div>
+                                    <div class="email-ctn-nock">
+                                        <p>Known Loss</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                        <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                            <div class="past-day-statis">
+                                <div class="email-ctn-round">
+                                    <div class="email-rdn-hd">
+                                    <h2>Item Status Overview</h2>
+                                </div>
+                            </div>
+                            <div class="recent-items-inn">
+                                <table class="table table-inner table-vmiddle">
+                                    <thead>
+                                        <tr>
+                                            <th>Status Name</th>
+                                            <th style="width: 60px">Size</th>
+                                            <th>Percentage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Oparational</td>
+                                            <td class="f-500 c-cyan">{{status.Oparational}}</td>
+                                            <td class="f-500 c-cyan">{{status.Per_Oparational}} %</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Borrowed</td>
+                                            <td class="f-500 c-cyan">{{status.Borrowed}}</td>
+                                            <td class="f-500 c-cyan">{{status.Per_Borrowed}} %</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Non-Oparatianal</td>
+                                            <td class="f-500 c-cyan">{{status.NonOparatianal}}</td>
+                                            <td class="f-500 c-cyan">{{status.Per_NonOparatianal}} %</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lost</td>
+                                            <td class="f-500 c-cyan">{{status.Lost}}</td>
+                                            <td class="f-500 c-cyan">{{status.Per_Lost}} %</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Maintanance</td>
+                                            <td class="f-500 c-cyan">{{status.Maintanance}}</td>
+                                            <td class="f-500 c-cyan">{{status.Per_Maintanance}} %</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Email Statistic area-->
+
+{% endblock %}

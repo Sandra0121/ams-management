@@ -1,0 +1,149 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-windows"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h5>Edit  {{nocname}}</h5>
+										<p>Only Editable Fields</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Breadcomb area End-->
+
+    
+
+    
+    <div class="container">
+            {% include 'partials/_alerts.html' %}
+        <div class="row" id="consumable">
+            <form action="/non_edit" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" name="id" id="" value="{{uid}}" hidden>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list">
+                            <div class="cmp-tb-hd bcs-hd">
+                                <h2>Edit Non Consumable Item</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="glyphicon glyphicon-font"></i>
+                                        </div>    
+                                        <div class="nk-int-st">
+                                            <input value="{{ nocname }}" type="text" name="nocname" class="form-control" required placeholder="Item Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="glyphicon glyphicon-qrcode"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input value="{{ nocid }}" type="text" name="nocid" class="form-control" required placeholder="Item Code ">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="glyphicon glyphicon-qrcode"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input value="{{tag_id}}" type="text" name="tag_id" class="form-control"
+                                                required placeholder="Tag ID ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-element-list mg-t-30">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="bootstrap-select fm-cmp-mg">
+                                                        <select name="noclocation" class="selectpicker" required title="Location">
+                                                                <option selected value="{{noclocation.id}}">{{noclocation.loname}}</option>
+                                                                {% for loct in loca_tion %}
+                                                                    {% if loct.loname == noclocation.loname %}
+                                                                    {%else%}
+                                                                        <option value="{{loct.id}}">{{loct.loname}}</option> 
+                                                                    {%endif%}       
+                                                                {% endfor %}
+                                                            </select>
+                                                    </div> 
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="bootstrap-select fm-cmp-mg">
+                                                        <select name="noccategory" class="selectpicker" data-live-search="true" required title="Category">
+                                                                <option selected>{{noccategory}}</option>
+                                                                {% for catg in category_non %}
+                                                                    <option>{{catg.coname}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="bootstrap-select fm-cmp-mg">
+                                                        <select  name="nocstatus" class="selectpicker" title="Status " required>
+                                                                <!-- <optgroup label="Picnic"> -->
+                                                                    <option selected>{{nocstatus}}</option>
+                                                                        <option value="Operational">Operational</option>
+                                                                        <option value="Borrowed">Borrowed</option>
+                                                                        <option value="Non-Operatianal">Non-Operatianal</option>
+                                                                        <option value="Lost">Lost</option>
+                                                                        <option value="Maintanance">Maintanance</option>
+                                                                </optgroup>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="form-group ic-cmp-int">
+                                                        <div class="form-ic-cmp">
+                                                            <i class="notika-icon notika-mail"></i>
+                                                        </div>
+                                                        <div class="nk-int-st" >
+                                                            <textarea  type="text" name="nocdescp" class="form-control"  placeholder="Descriptions">{{nocdescp}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-1">
+                                    <button type="reset" class="btn btn-primary"> <i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                </div>
+                                <div class="col-sm-2">
+                                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>  Save</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+    {% endblock %}

@@ -1,0 +1,141 @@
+
+    {% extends 'layout.html' %}
+    {% block content%}
+    {% load static %}
+    {% include 'navs.html' %}
+
+
+
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-support"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Voucher</h2>
+										<p>Generate voucher According to what you borrow <strong>and CLICK the button to Download</strong></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-3">
+								<div class="breadcomb-report">
+									<button type="button" name="Print" onclick="javascript:printing('print_part')"  title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Breadcomb area End-->
+    
+    <!-- Main Menu area End-->
+    <script type="text/javascript">
+        function printing(layer) {
+            var layetext=document.getElementById(layer);
+            window.document.write(layetext.innerHTML);
+            window.document.close();
+            window.print();
+            window.close();
+        }
+    </script>
+
+
+    <!-- Invoice area Start-->
+    <div class="invoice-area" >
+        <div class="container">
+                {% include 'partials/_alerts.html' %}
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div id="print_part"> 
+                    <div class="invoice-wrap">
+                        <div class="invoice-img" style="background:teal">
+                                <center>
+                                        <img src="{% static 'images/arm.png' %}" alt="">
+                                        <h2 style="color:white;padding-top:10px" class="header-top-menu">e-GOVERNMENT AUTHORITY</h2>
+                                        <h4 style="color:white;">Asset Management System</h4>
+                                 </center>
+                        </div>
+
+                        <div style="width:50%;float:left; height:150px">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    {% for vo in vocher%}
+                                    <div class="invoice-cmp-ds ivc-to">
+                                            <div class="invoice-frm">
+                                                <span>Document name: <strong>{{docty}}</strong></span>
+                                            </div>
+                                            <div class="comp-tl">
+                                                <span>Proccesing User: <strong>{{vo.lender}}</strong></span>
+                                                <p>Proccesing Date & Time:<strong> {{vo.lend_on}}</strong> </p>
+                                            </div>
+                                            <div class="cmp-ph-em">
+                                                <span>Borrowed by : <strong>{{vo.recivername}}</strong> </span>
+                                                <span>Staff ID : <strong>{{vo.staffid}}</strong> </span>
+                                              
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+
+                        </div>
+                        <div style="width:50%;float:right;height:150px">
+                                <div class="invoice-hds-pro">
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                        </div>
+        
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="border:black;float:right">
+                                           <img style="width:30%;float:right" src="{% static 'images/qrcodimg.png' %}" alt="QR-Code Not Found" >
+                                        </div><br>
+                                    </div>
+                                </div>
+
+                        </div><br>
+                        <hr>
+                             <center>
+                                 <div style="width:50%;border:brown dotted;margin-top:100px">
+                                        <h2 style="color:brown">Borrowed Informations </h2 style="color:brown">
+
+                                        <p>ASSET NAME : . . .<q style="font-weight:bold">{{vo.itemname}}</q></p>
+                                        <p>ASSET ID : . . .<q style="font-weight:bold">{{vo.itemid}}</q></p>
+                                        <p>WHERE IT GOES : . . .<q style="font-weight:bold">{{vo.where_itgo}}</q></p>
+                                         <br><br>
+                                 <p>DESCRIPTIONS:</p>
+                                 {{vo.descript}}
+                                 
+                                 <br><br>
+                                 {%endfor%}
+                                </div>
+                             </center>
+                             <center>
+                                 <h2>Signature Area</h2>
+                                 <table>
+                                        <tr>
+                                            <td width="30%">Issurer Signature</td>
+                                            <td width="30%">Security Guard Signature</td>
+                                            <td width="30%">Borrower Signature </td>
+                                        <tr>
+                                       <tr>
+                                            <td width="30%"> <br> ___________________________</td>
+                                            <td width="30%"><br> ___________________________</td>
+                                            <td width="30%"><br> ___________________________</td>
+                                      </tr>
+                                    </table>
+                            </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+        <!-- Invoice area End-->
+    {% endblock %}

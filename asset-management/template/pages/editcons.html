@@ -1,0 +1,144 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-windows"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h5>Edit  {{coname}}</h5>
+										<p>Select Class</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Breadcomb area End-->
+
+    
+
+    
+    <div class="container">
+            {% include 'partials/_alerts.html' %}
+        <div class="row" id="consumable">
+            <form action="/editcunsumable" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" name="id" id="" value="{{id}}" hidden>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list">
+                            <div class="cmp-tb-hd bcs-hd">
+                                <h2>Edit Consumable List</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="glyphicon glyphicon-font"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input value="{{coname}}" type="text" name="coname" class="form-control" required placeholder="Item Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="glyphicon glyphicon-adjust"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input value="{{coqunty}}" type="number" name="coqunty" class="form-control" required placeholder="Item Quantity">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="glyphicon glyphicon-dashboard"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input value="{{unitt}}" name="unitt" type="text" class="form-control" required placeholder="Item Unit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-element-list mg-t-30">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="bootstrap-select fm-cmp-mg">
+                                                        <select name="colocation" class="selectpicker" required title="Location">
+                                                                <option selected>{{colocation}}</option>
+                                                                {% for loct in loca_tion %}
+                                                                    <option>{{loct.loname}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="bootstrap-select fm-cmp-mg">
+                                                        <select name="cocategory" class="selectpicker" data-live-search="true" required title="Category">
+                                                                <option selected>{{cocategory}}</option>
+                                                                {% for catg in category_cons %}
+                                                                    <option>{{catg.coname}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="bootstrap-select fm-cmp-mg">
+                                                        <select  name="costatus" class="selectpicker" title="Status " required>
+                                                                <optgroup label="Status">
+                                                                    <option selected>{{costatus}}</option>
+                                                                        <option value="Operational">Operational</option>
+                                                                        <option value="Borrowed">Borrowed</option>
+                                                                        <option value="Non-Operatianal">Non-Operatianal</option>
+                                                                    </optgroup>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="form-group ic-cmp-int">
+                                                        <div class="form-ic-cmp">
+                                                            <i class="notika-icon notika-mail"></i>
+                                                        </div>
+                                                        <div class="nk-int-st" >
+                                                            <textarea  type="text" name="codescrp" class="form-control"  placeholder="Descriptions">{{codescrp}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-1">
+                                    <button type="reset" class="btn btn-primary"> <i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                </div>
+                                <div class="col-sm-2">
+                                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>  Save</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+    {% endblock %}

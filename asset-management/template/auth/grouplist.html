@@ -1,0 +1,83 @@
+
+    {% extends 'layout.html' %}
+    {% block content%}
+    {% load static %}
+    {% include 'navs.html' %}
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <a href="setpermision"><button  class="btn btn-notika btn-xs btn-primary"> <i class="glyphicon glyphicon-plus"></i> Add New group</button></a>
+                            <h2>Groups in the System</h2>
+                           </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Group ID</th>
+                                        <th>Group Name</th>
+                                        <th>Read Permision</th>
+                                        <th>Write Permision</th>
+                                        <th>Edit Permision</th>
+                                        <th>Status</th>
+                                        <th>Added date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tiger Nixon</td>
+                                        <td>Edinburgh</td>
+                                        <td>61</td>
+                                        <td>2011/04/25</td>
+                                        <td>$320,800</td>
+                                        <td>Active</td>
+                                        <td>$320,800</td>
+                                        <td>
+                                            <button  class="btn btn-notika btn-xs btn-info"> <i class="glyphicon glyphicon-edit"></i> Edit</button>
+                                            <button  class="btn btn-notika btn-xs btn-danger"> <i class="glyphicon glyphicon-ban-circle"></i> Block</button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                            <td>CUP</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
+                                            <td>Blocked</td>
+                                            <td>$320,800</td>
+                                            <td>
+                                                    <button  class="btn btn-notika btn-xs btn-info"> <i class="glyphicon glyphicon-edit"></i> Edit</button>
+                                                    <button  class="btn btn-notika btn-xs btn-danger"> <i class="glyphicon glyphicon-ban-circle"></i> Block</button>
+                                                </td>
+                                        </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Group ID</th>
+                                    <th>Group Name</th>
+                                    <th>Read Permision</th>
+                                    <th>Write Permision</th>
+                                    <th>Edit Permision</th>
+                                    <th>Status</th>
+                                    <th>Added date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table area End-->
+
+
+
+            
+    {% endblock %}

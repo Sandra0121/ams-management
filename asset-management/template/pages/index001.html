@@ -1,0 +1,122 @@
+{% extends 'layout.html' %}
+{% block content%}
+{% load static %}
+{% include 'navs.html' %}
+
+
+
+<!-- Start Status area -->
+<div class="notika-status-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <a href="/view_items_by_location"><button class="btn btn-lg btn-primary"><i
+                                class="glyphicon glyphicon-arrow-left"></i> Back Home</button></a>
+                </div>
+            </div>
+            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <div class="website-traffic-ctn">
+                        <h2><span class="counter">{{ver_count}}</span></h2>
+                        <p>Verified Assets</p>
+                    </div>
+                    {% comment %} <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div> {% endcomment %}
+                </div>
+            </div> -->
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                    <div class="website-traffic-ctn">
+                        <h2><span class="counter">{{asets_ver}}</span></h2>
+                        <p>Total Assets</p>
+                    </div>
+                    {% comment %} <div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div> {% endcomment %}
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <a href="/notification"><button class="btn btn-lg btn-primary"><i
+                                class="glyphicon glyphicon-arrow-right"></i> See Notifications</button></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+<!-- End Status area-->
+
+
+
+<!-- Data Table area Start-->
+<div id="tracking-id">
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Available Assets </h2>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Asset Id</th>
+                                        <th>Asset Name</th>
+                                        <th>Asset Loc</th>
+                                        <th>Read At</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="available">
+                                    {% for aset in asets %}
+                                    <tr>
+                                        <td>{{ aset.id }}</td>
+                                        <td> {{ aset.asset_id__nocname}}</td>
+                                        <td> {{ aset.asset_id__nocid}}</td>
+                                        <td>{{ aset.reader_loc }}</td>
+                                        <td>{{ aset.read_at }}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Asset Id</th>
+                                        <th>Asset Loc</th>
+                                        <th>Read At</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Data Table area End-->
+<script type="text/javascript">
+    var ajax_call = function () {
+        var $aset = $('#aset');
+        $.ajax({
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': '{{csrf_token}}'
+            },
+            url: 'tracking_async',
+            success: function (data) {
+                document.getElementById('tracking-div').innerHTML = data
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+    var interval = 5000; // 5 secs
+    setInterval(ajax_call, interval);
+</script>
+
+{% endblock %}
